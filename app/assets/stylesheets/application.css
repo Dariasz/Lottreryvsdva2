@@ -1,0 +1,45 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ *
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require meterialize
+ *= require items
+ *= require myitems
+ *= require_self
+ */
+/*
+
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.demo-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+.demo-layout .demo-header .mdl-textfield {
+  padding: 0px;
+  margin-top: 41px;
+}
+.demo-layout .demo-header .mdl-textfield .mdl-textfield__expandable-holder {
+  bottom: 19px;
+}
+.demo-layout .mdl-layout__header .mdl-layout__drawer-button {
+  color: blue;
+}
+.mdl-layout__drawer .avatar {
+  margin-bottom: 16px;
+}
+.demo-drawer {
+  border: none;
+}
+/* iOS Safari specific workaround */

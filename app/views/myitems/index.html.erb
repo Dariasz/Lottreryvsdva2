@@ -1,0 +1,114 @@
+<h1>My items
+<%= search_form_for @q do |f| %>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+  <label class="mdl-button mdl-js-button mdl-button--icon" for="q_item_cont">
+    <i class="material-icons">search</i>
+  </label>
+  <div class="mdl-textfield__expandable-holder">
+    <input class="mdl-textfield__input" type="text" id="q_item_cont" name='q[item_cont]'>
+    <label class="mdl-textfield__label" for="search">Enter your query...</label>
+  </div>
+</div>
+<% end %>
+</h1>
+
+
+
+
+
+<div id="containerr"
+
+<div id="bidded" style="float: left" >
+<table>
+  <thead>
+    <tr>
+      <th>Item bidded</th>
+      <th>Description</th>
+      <th>Bidders</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+        <% @items.each do |item| %>
+      <tr>
+        <% if user_bidded? item %>
+        <% if !item.winner %>
+        <td><%= item.item %></td>
+        <td><%= item.description %></td>
+        <td><%= bidders item %></td>
+        <td><%= link_to 'Show', item %></td>
+        <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<div id="wonn" style="float: left">
+<table>
+  <thead>
+    <tr>
+      <th>Item won</th>
+      <th>Description</th>
+      <th>Bidders</th>
+
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+        <% @items.each do |item| %>
+      <tr>
+        <% if item.winner %>
+        <% if item.winner == current_user %>
+        <td><%= item.item %></td>
+        <td><%= item.description %></td>
+        <td><%= bidders item %></td>
+        <td><%= link_to 'Show', item %></td>
+        <% end %>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<div id="lostt" style="float: left" >
+<table>
+  <thead>
+    <tr>
+      <th>Item lost</th>
+      <th>Description</th>
+      <th>Bidders</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+        <% @items.each do |item| %>
+      <tr>
+        <% if user_bidded? item %>
+        <% if item.winner != current_user %>
+        <td><%= item.item %></td>
+        <td><%= item.description %></td>
+        <td><%= bidders item %></td>
+        <td><%= link_to 'Show', item %></td>
+        <%end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>

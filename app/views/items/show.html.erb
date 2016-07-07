@@ -1,0 +1,45 @@
+
+
+<p>
+  <strong>Item:</strong>
+  <%= @item.item %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+
+<p>
+  <strong>Bidders:</strong>
+  <%@item.users.each do |user| %>
+    <%=user.email %>
+    <%end%>
+</p>
+
+
+<p>
+  <strong>Owner:</strong>
+  <% if @item.winner %>
+  <%= @item.winner.email %>
+  <% else %>
+  Item is track
+  <% end %>
+
+</p>
+
+
+<%unless user_bidded? @item %>
+<%=link_to 'Bid this item', bid_item_path(@item), method: :post %>
+||
+<%end%>
+
+<%=link_to "Home", root_path%> ||
+
+
+
+  <% if require_admin_bool%>
+<%= link_to 'Edit', edit_item_path(@item) %> \/
+<%end%>
+<%= link_to 'Back', items_path %>

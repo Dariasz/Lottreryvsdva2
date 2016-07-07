@@ -1,0 +1,83 @@
+
+
+<h1>Items
+<%= search_form_for @q do |f| %>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+  <label class="mdl-button mdl-js-button mdl-button--icon" for="q_item_cont">
+    <i class="material-icons">search</i>
+  </label>
+  <div class="mdl-textfield__expandable-holder">
+    <input class="mdl-textfield__input" type="text" id="q_item_cont" name='q[item_cont]'>
+    <label class="mdl-textfield__label" for="search">Enter your query...</label>
+  </div>
+</div>
+<% end %>
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Description</th>
+      <th>Bidders</th>
+
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+
+
+
+    <% @items.each do |item| %>
+
+      <tr>
+        <td><%= item.item %></td>
+        <td><%= item.description %></td>
+        <td><%= bidders item %></td>
+        <% if user_signed_in?%>
+        <td>
+          <%unless user_bidded? item %>
+          <%=link_to 'Bid this item', bid_item_path(item), method: :post %>
+          <%else %>
+          Bidded
+          <%end%>
+
+        </td>
+        <td><%= link_to 'Show', item %></td>
+        <%end%>
+        <% if require_admin_bool%>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+
+        <% if item.users.count > 1 %>
+        <% if !item.winner %>
+        <td><%= link_to 'Draw', draw_item_path(item) %></td>
+        <%else%>
+        <td>This item został już wygrany</td>
+        <%end%>
+        <%else%>
+        <td>Not enought bidders</td>
+        <% end %>
+
+
+        <%if item.users.count == 0  %>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%else%>
+        <td>Item is bidding <%= link_to 'Destroy anyway', item, method: :delete %></td>
+        <%end%>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%=link_to "Home", root_path%>
+<br>
+<% if require_admin_bool %>
+<%= link_to 'New Item', new_item_path %>
+<% end %>
+
+
+<%= paginate @items %>
