@@ -92,9 +92,9 @@ $trim-color-classes: false !default;
 
 // Use color primarily for emphasis. Choose colors that fit with
 // your brand and provide good contrast between visual components.
-$color-primary: $palette-red-500 !default;
+$color-primary: $palette-blue-500 !default;
 $color-primary-dark: $palette-red-900 !default;
-$color-accent: $palette-amber-500 !default;
+$color-accent: $palette-red-700 !default;
 
 // Our primary is dark, so use $color-dark-contrast for overlaid text.
 $color-primary-contrast: $color-dark-contrast !default;
@@ -135,7 +135,7 @@ $button-primary-color: unquote("rgba(#{$palette-grey-500}, 0.20)") !default;
 $button-secondary-color: unquote("rgb(#{$color-black})") !default;
 $button-hover-color: $button-primary-color !default;
 $button-active-color: unquote("rgba(#{$palette-grey-500}, 0.40)") !default;
-$button-focus-color: unquote("rgba(#{$color-black}, 0.12)") !default;
+$button-focus-color: unquote("rgba(#{$color-black}, 0.50)") !default;
 
 // Colored button colors.
 $button-primary-color-alt: unquote("rgb(#{$color-primary})") !default;

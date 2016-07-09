@@ -10,8 +10,8 @@ member do
 end
 
   devise_for :users
-  get 'welcome/index'
-  root 'welcome#index'
+  get 'items/index'
+  root 'items#index'
 
 
   if Rails.env.development?

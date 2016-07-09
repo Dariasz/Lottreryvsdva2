@@ -22,6 +22,7 @@ gem 'letter_opener_web', '~> 1.2.0', :group => :development
 gem 'ransack'
 gem 'material_design_lite-sass'
 gem 'kaminari'
+gem 'carrierwave'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

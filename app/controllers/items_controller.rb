@@ -113,6 +113,6 @@ end
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:item, :description)
+      params.require(:item).permit(:item, :description, :image)
     end
 end

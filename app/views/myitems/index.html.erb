@@ -1,114 +1,99 @@
-<h1>My items
-<%= search_form_for @q do |f| %>
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-  <label class="mdl-button mdl-js-button mdl-button--icon" for="q_item_cont">
-    <i class="material-icons">search</i>
-  </label>
-  <div class="mdl-textfield__expandable-holder">
-    <input class="mdl-textfield__input" type="text" id="q_item_cont" name='q[item_cont]'>
-    <label class="mdl-textfield__label" for="search">Enter your query...</label>
+<h3 style="text-align:center">My items</h3>
+
+
+
+<div  class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div class="mdl-tabs__tab-bar">
+      <a href="#bidded" class="mdl-tabs__tab is-active">Bidded</a>
+      <a href="#lannisters-panel" class="mdl-tabs__tab">Won</a>
+      <a href="#targaryens-panel" class="mdl-tabs__tab">Lost</a>
   </div>
-</div>
-<% end %>
-</h1>
 
 
 
+  <div style="float: none; padding-left:40%" class="mdl-tabs__panel is-active" id="bidded">
+    <table >
+      <thead>
+        <tr>
+          <th>Item won</th>
+          <th>Description</th>
+          <th>Bidders</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+            <% @items.each do |item| %>
+          <tr>
+            <% if user_bidded? item %>
+            <% if !item.winner %>
+            <td><%= item.item %></td>
+            <td><%= item.description %></td>
+            <td><%= bidders item %></td>
+            <td><%= link_to 'Show', item %></td>
+            <% end %>
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
 
-<div id="containerr"
 
-<div id="bidded" style="float: left" >
-<table>
-  <thead>
-    <tr>
-      <th>Item bidded</th>
-      <th>Description</th>
-      <th>Bidders</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div  style="float: none; padding-left:40%" class="mdl-tabs__panel" id="lannisters-panel">
+    <table class= >
+      <thead>
+        <tr>
+          <th>Item won </th>
+          <th>Description </th>
+          <th>Bidders</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-  <tbody>
+      <tbody>
 
-        <% @items.each do |item| %>
-      <tr>
-        <% if user_bidded? item %>
-        <% if !item.winner %>
-        <td><%= item.item %></td>
-        <td><%= item.description %></td>
-        <td><%= bidders item %></td>
-        <td><%= link_to 'Show', item %></td>
+            <% @items.each do |item| %>
+            <% if item.winner  && item.winner == current_user%>
+            <tr>
+            <td><%= item.item %></td>
+            <td><%= item.description %></td>
+            <td><%= bidders item %></td>
+            <td><%= link_to 'Show', item %></td>
+          </tr>
         <% end %>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+      </tbody>
+    </table>
+  </div>
+  <div style="float: none; padding-left:40%" class="mdl-tabs__panel" id="targaryens-panel">
+    <table class= >
+      <thead>
+        <tr>
+          <th>Item won</th>
+          <th>Description</th>
+          <th>Bidders</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<div id="wonn" style="float: left">
-<table>
-  <thead>
-    <tr>
-      <th>Item won</th>
-      <th>Description</th>
-      <th>Bidders</th>
+      <tbody>
 
-
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-        <% @items.each do |item| %>
-      <tr>
-        <% if item.winner %>
-        <% if item.winner == current_user %>
-        <td><%= item.item %></td>
-        <td><%= item.description %></td>
-        <td><%= bidders item %></td>
-        <td><%= link_to 'Show', item %></td>
+            <% @items.each do |item| %>
+          <tr>
+            <% if user_bidded? item %>
+            <% if item.winner != current_user %>
+            <td><%= item.item %></td>
+            <td><%= item.description %></td>
+            <td><%= bidders item %></td>
+            <td><%= link_to 'Show', item %></td>
+            <% end %>
+            <%end%>
+          </tr>
         <% end %>
-        <%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-
-<div id="lostt" style="float: left" >
-<table>
-  <thead>
-    <tr>
-      <th>Item lost</th>
-      <th>Description</th>
-      <th>Bidders</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-        <% @items.each do |item| %>
-      <tr>
-        <% if user_bidded? item %>
-        <% if item.winner != current_user %>
-        <td><%= item.item %></td>
-        <td><%= item.description %></td>
-        <td><%= bidders item %></td>
-        <td><%= link_to 'Show', item %></td>
-        <%end %>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-
-
-
-
-
+      </tbody>
+    </table>
+  </div>
 </div>

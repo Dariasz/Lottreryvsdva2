@@ -54,26 +54,22 @@
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout- mdl-layout--fixed-header">
         <header class="demo-header mdl-layout__header">
           <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title"><%=link_to "Home", root_path%> <%=link_to 'Items', items_path %> <c id="notice"><%= notice %></c></span>
+            <span style="text-align:center"  class="mdl-layout-title"><%=link_to  "Home", root_path%> </br> <div id="notice"><%= notice %></div></span>
               <div class="mdl-layout-spacer"></div>
                 </header>
                    <div class="demo-drawer mdl-layout__drawer  ">
-                     <!----<header class="demo-drawer-header">
-                       <img src="images/user.jpg" class="demo-avatar">
+                     <header   class="demo-drawer-header" >
+                       <%= image_tag(current_user.avatar_url, class: 'avatar') if current_user && current_user.avatar.present?  %>
+
                          <div class="demo-avatar-dropdown">
-
-                              <div class="mdl-layout-spacer"></div>
-                                 <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                                    <i class="material-icons" role="presentation">arrow_drop_down</i>
-                                    <span class="visuallyhidden">Accounts</span>
+                            <div class="mdl-layout-spacer"></div>
+                        </div>
+                      </header>
 
 
-
-                </div> ---->
-          </header>
           <nav class="demo-navigation mdl-navigation">
           <% if user_signed_in? %>
-              <span>Logged in as <%= current_user.email%></span>
+              <span style="text-align:center"><%= current_user.email%></span>
 
           <%= link_to root_path, class: "mdl-navigation__link ", :method=> :get do %>
             <i class="material-icons" role="presentation">home</i> Home
@@ -81,8 +77,17 @@
 
           <%= link_to myitems_path, class: "mdl-navigation__link ", :method=> :get do %>
             <i class="material-icons" role="presentation">shopping_cart</i> My items
+
+            <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Legal information</li>
+          </ul> -->
           <% end %>
-          
+
           <% if require_admin_bool %>
 
           <%= link_to new_item_path, class: "mdl-navigation__link ", :method=> :get do %>
